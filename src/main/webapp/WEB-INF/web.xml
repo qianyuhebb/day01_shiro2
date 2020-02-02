@@ -1,0 +1,41 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+
+
+
+    <!--会帮我们把securityManager 交给securityUtils 管理
+        所以可以通过securityUtils获取subject    初始化了shiro 的环境   filter属于懒加载
+    -->
+   <filter>
+       <filter-name>shiroFilter</filter-name>
+       <filter-class>org.apache.shiro.web.servlet.ShiroFilter</filter-class>
+   </filter>
+    <filter-mapping>
+        <filter-name>shiroFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!--shiro的小帮手
+       项目启动时候，会帮助我们加载配置文件，构建所有需要的过滤器链条，ShiroFilter会获取此过滤链条
+      -->
+    <listener>
+        <listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
+    </listener>
+    <!--spring mvc 前端控制器-->
+  <servlet>
+    <servlet-name>dispatcherServlet</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+   <init-param>
+     <param-name>contextConfigLocation</param-name>
+     <param-value>classpath:springmvc.xml</param-value>
+   </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dispatcherServlet</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+</web-app>
