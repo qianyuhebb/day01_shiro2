@@ -3,46 +3,66 @@
   <ID>JAVA</ID>
   <OriginalElement>org.apache.shiro.config.IniSecurityManagerFactory</OriginalElement>
   <nodes>
-    <node x="44.0" y="164.0">org.apache.shiro.config.IniFactorySupport</node>
-    <node x="90.74999999999999" y="246.0">org.apache.shiro.config.IniSecurityManagerFactory</node>
-    <node x="40.0" y="0.0">org.apache.shiro.util.Factory</node>
-    <node x="216.0" y="82.0">java.lang.Deprecated</node>
-    <node x="0.0" y="82.0">org.apache.shiro.util.AbstractFactory</node>
+    <node x="111.75" y="313.0">org.apache.shiro.config.IniFactorySupport</node>
+    <node x="67.91666666666663" y="659.0">org.apache.shiro.config.IniSecurityManagerFactory</node>
+    <node x="55.0" y="0.0">org.apache.shiro.util.Factory</node>
+    <node x="251.75" y="163.0">java.lang.Deprecated</node>
+    <node x="20.0" y="105.0">org.apache.shiro.util.AbstractFactory</node>
   </nodes>
   <notes />
   <edges>
     <edge source="org.apache.shiro.config.IniSecurityManagerFactory" target="java.lang.Deprecated">
-      <point x="74.0" y="-16.0" />
-      <point x="312.75" y="221.0" />
-      <point x="325.5" y="221.0" />
+      <point x="162.00000000000006" y="-269.5" />
+      <point x="472.9166666666667" y="639.0" />
+      <point x="361.25" y="639.0" />
       <point x="36.5" y="16.0" />
     </edge>
     <edge source="org.apache.shiro.config.IniFactorySupport" target="org.apache.shiro.util.AbstractFactory">
-      <point x="-54.0" y="-16.0" />
-      <point x="0.0" y="16.0" />
+      <point x="-59.75" y="-143.0" />
+      <point x="50.5" y="74.0" />
     </edge>
     <edge source="org.apache.shiro.config.IniSecurityManagerFactory" target="org.apache.shiro.config.IniFactorySupport">
-      <point x="-74.0" y="-16.0" />
-      <point x="164.75" y="221.0" />
-      <point x="152.0" y="221.0" />
-      <point x="0.0" y="16.0" />
+      <point x="5.6843418860808015E-14" y="-269.5" />
+      <point x="79.66666666666669" y="143.0" />
+    </edge>
+    <edge source="org.apache.shiro.config.IniSecurityManagerFactory" target="org.apache.shiro.config.IniSecurityManagerFactory">
+      <point x="0.0" y="269.5" />
+      <point x="310.91666666666663" y="1218.0" />
+      <point x="47.91666666666663" y="1218.0" />
+      <point x="47.91666666666663" y="928.5" />
+      <point x="-243.0" y="-0.0" />
+    </edge>
+    <edge source="org.apache.shiro.config.IniFactorySupport" target="org.apache.shiro.config.IniFactorySupport">
+      <point x="-79.66666666666667" y="143.0" />
+      <point x="151.58333333333331" y="619.0" />
+      <point x="91.75" y="619.0" />
+      <point x="91.75" y="456.0" />
+      <point x="-119.5" y="-0.0" />
     </edge>
     <edge source="org.apache.shiro.config.IniFactorySupport" target="java.lang.Deprecated">
-      <point x="54.0" y="-16.0" />
-      <point x="206.0" y="139.0" />
-      <point x="252.5" y="139.0" />
+      <point x="59.75" y="-143.0" />
+      <point x="291.0" y="293.0" />
+      <point x="288.25" y="293.0" />
       <point x="-36.5" y="16.0" />
     </edge>
+    <edge source="org.apache.shiro.util.AbstractFactory" target="org.apache.shiro.util.AbstractFactory">
+      <point x="-50.5" y="74.0" />
+      <point x="70.5" y="273.0" />
+      <point x="0.0" y="273.0" />
+      <point x="0.0" y="179.0" />
+      <point x="-101.0" y="-0.0" />
+    </edge>
     <edge source="org.apache.shiro.util.AbstractFactory" target="org.apache.shiro.util.Factory">
-      <point x="0.0" y="-16.0" />
-      <point x="0.0" y="16.0" />
+      <point x="0.0" y="-74.0" />
+      <point x="0.0" y="27.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.0" x="194.0" y="139.0" />
-  <SelectedNodes>
-    <node>org.apache.shiro.util.Factory</node>
-  </SelectedNodes>
-  <Categories />
+  <settings layout="Hierarchic Group" zoom="1.0" x="220.5" y="228.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>
 </Diagram>
