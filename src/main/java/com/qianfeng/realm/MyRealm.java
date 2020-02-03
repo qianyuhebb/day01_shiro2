@@ -6,11 +6,13 @@ import com.qianfeng.service.PermissionService;
 import com.qianfeng.service.RoleService;
 import com.qianfeng.service.UserService;
 import com.qianfeng.service.UserServiceImpl;
+import lombok.Setter;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.web.context.ContextLoader;
 
 import javax.jnlp.PersistenceService;
@@ -24,7 +26,12 @@ import java.util.Set;
  * 参数：
  * 返回值：
  **/
+@Setter
 public class MyRealm extends AuthorizingRealm {
+
+      private UserService userService;
+      private RoleService roleService;
+      private PermissionService permissionService;
 
     /*作用：查询权限信息
     *何时触发：/user/query = roles["admin"]  /user/delete = authc,perms["user:update","user:delete"] <shiro:hasRole name="admin">
@@ -33,11 +40,11 @@ public class MyRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String username = (String) principals.getPrimaryPrincipal();
         //查询用户信息
-        RoleService roleService = ContextLoader.getCurrentWebApplicationContext().getBean("roleServiceImpl",
+        /*RoleService roleService = ContextLoader.getCurrentWebApplicationContext().getBean("roleServiceImpl",
                 RoleService.class);
         PermissionService permissionService = ContextLoader.getCurrentWebApplicationContext().getBean(
                 "permissionServiceImpl",
-                PermissionService.class);
+                PermissionService.class);*/
         Set<String> roles =  roleService.queryRoleByUsername(username);
         Set<String> perms = permissionService.queryPermsByusername(username);
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo(roles);
@@ -53,17 +60,29 @@ public class MyRealm extends AuthorizingRealm {
     * */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+
+
+
         String  username = (String) token.getPrincipal();
-        //查询用户信息
-        UserService userService =
-                ContextLoader.getCurrentWebApplicationContext().getBean("userServiceImpl", UserService.class);
+
+        //查询用户信息  和spring整合以后，就不需要这一句代码
+       /* UserService userService =
+                ContextLoader.getCurrentWebApplicationContext().getBean("userServiceImpl", UserService.class);*/
         User user = userService.queryUserByUsername(username);
          //判断用户是否为空
         if (user == null) {
             return null;    //后续会抛出异常
         }
-         AuthenticationInfo authenticationInfo  = new SimpleAuthenticationInfo(user.getUsername(), user.getPassword()
-                 , this.getName());
+     /*    AuthenticationInfo authenticationInfo  = new SimpleAuthenticationInfo(user.getUsername(), user.getPassword()
+                 , this.getName());*/
+
+        AuthenticationInfo authenticationInfo  = new SimpleAuthenticationInfo(
+                user.getUsername(),
+                user.getPassword(),
+                //把盐传入
+                ByteSource.Util.bytes(user.getSalt())
+                , this.getName());
+
         return authenticationInfo;
     }
 }

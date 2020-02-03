@@ -65,5 +65,5 @@
     </tx:advice>-->
 
    <!---->
-
+   <import resource="classpath:shiro_applicationContext.xml"/>
 </beans>

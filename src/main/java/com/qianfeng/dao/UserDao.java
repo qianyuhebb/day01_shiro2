@@ -2,6 +2,7 @@ package com.qianfeng.dao;
 
 import com.qianfeng.pojo.User;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * 时间：  2020/2/2
@@ -14,4 +15,6 @@ import org.apache.ibatis.annotations.Param;
 public interface UserDao {
 
      User queryUserByUsername(@Param("username") String username);
+
+     Integer insertUser(User user);
 }

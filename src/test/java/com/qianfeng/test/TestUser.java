@@ -21,8 +21,13 @@ public class TestUser {
     public static void main(String[] args) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         UserDao userDao = context.getBean("userDao", UserDao.class);
-        User user = userDao.queryUserByUsername("松松");
-        System.out.println(user);
+      //  User user = userDao.queryUserByUsername("松松");
+        User user = new User();
+        user.setUsername("new_user2");
+        user.setPassword("123");
+
+        userDao.insertUser(user);
+       // System.out.println(user);
 
 
     }

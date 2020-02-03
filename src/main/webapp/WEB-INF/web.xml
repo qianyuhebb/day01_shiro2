@@ -9,22 +9,37 @@
 
 
     <!--会帮我们把securityManager 交给securityUtils 管理
-
+   写了shiro_application.xml配置文件以后，就不需要这个了
     -->
-   <filter>
+  <!-- <filter>
        <filter-name>shiroFilter</filter-name>
        <filter-class>org.apache.shiro.web.servlet.ShiroFilter</filter-class>
    </filter>
     <filter-mapping>
         <filter-name>shiroFilter</filter-name>
         <url-pattern>/*</url-pattern>
-    </filter-mapping>
+    </filter-mapping>-->
     <!--shiro的小帮手
     项目启动时候，会帮助我们加载配置文件，构建所有需要的过滤器链条，ShiroFilter会获取此过滤链条
+
+    写了shiro_application.xml配置文件以后，就不需要这个了
    -->
-    <listener>
+   <!-- <listener>
         <listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
-    </listener>
+    </listener>-->
+    
+    <filter>
+        <filter-name>shiroFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+       <init-param>
+           <param-name>targetFilterLifecycle</param-name>
+           <param-value>true</param-value>
+       </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>shiroFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <!--spring mvc 前端控制器-->
   <servlet>
     <servlet-name>dispatcherServlet</servlet-name>
