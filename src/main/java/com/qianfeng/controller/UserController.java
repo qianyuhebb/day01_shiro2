@@ -53,6 +53,7 @@ public class UserController {
     }
 
     @GetMapping("/all")
+
     public  String queryall(){
         System.out.println("lqueryall ---------------- ");
 

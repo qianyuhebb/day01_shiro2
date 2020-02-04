@@ -41,10 +41,10 @@
     <!--配置shiro 过滤器-->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
        <property name="securityManager" ref="securityManager"/>
-        <property name="loginUrl" value="/user/login"/>
-        <property name="unauthorizedUrl" value="/user/perms/error"/>
+<!--        <property name="loginUrl" value="/user/login"/>-->
+<!--        <property name="unauthorizedUrl" value="/user/perms/error"/>-->
 
-        <property name="filterChainDefinitions">
+       <!-- <property name="filterChainDefinitions">
             <value>
                 /user/all = authc
                 /user/login/page = anon
@@ -54,7 +54,7 @@
                 /user/delete = authc,perms["user:update","user:delete"]
                 /user/logout = logout
             </value>
-        </property>
+        </property>-->
     </bean>
 
     <!--配置记住我的cookie-->

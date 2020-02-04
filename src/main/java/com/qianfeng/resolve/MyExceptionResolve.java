@@ -2,6 +2,8 @@ package com.qianfeng.resolve;
 
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authz.UnauthenticatedException;
+import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,7 +31,10 @@ public class MyExceptionResolve implements HandlerExceptionResolver {
      }else if (ex instanceof UnknownAccountException){
          System.out.println("用户名错误");
             mv.setViewName("redirect:/user/login");
-     }
+     }else if (ex instanceof UnauthorizedException || ex instanceof  UnauthenticatedException){
+            //权限不足跳转的页面
+            mv.setViewName("redirect:/user/perms/error");
+        }
 
        return mv;
     }
