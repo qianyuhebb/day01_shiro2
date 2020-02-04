@@ -5,9 +5,9 @@
 <h2>Hello World!</h2>
 <a href="user/logout">登出</a>
 欢迎您:
-<shiro:authenticated>
+<shiro:user>
     <shiro:principal/>
-</shiro:authenticated>
+</shiro:user>
 <shiro:notAuthenticated>
     <a href="/user/login">请登录</a>
 </shiro:notAuthenticated>

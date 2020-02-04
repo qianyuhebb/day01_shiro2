@@ -4,6 +4,7 @@ import com.qianfeng.pojo.User;
 import com.qianfeng.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,7 +42,12 @@ public class UserController {
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), user.getPassword());
          //登录失败会抛出异常，会交给异常解析器处理
+         //默认是false  记住我
+        token.setRememberMe(true);
         subject.login(token);
+        Session session = subject.getSession();
+       // session.setAttribute("");
+
         //登录成功，就跳转success
         return "success";
     }

@@ -33,6 +33,9 @@
     <!--配置securityManager-->
     <bean  id ="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
          <property name="realm" ref="myRealm"/>
+
+         <property name="rememberMeManager" ref="rememberMeManager"/>
+        <property name="sessionManager" ref="sessionManager"/>
     </bean>
 
     <!--配置shiro 过滤器-->
@@ -43,7 +46,7 @@
 
         <property name="filterChainDefinitions">
             <value>
-                /user/all = authc,perms["user:update","user:delete"]
+                /user/all = authc
                 /user/login/page = anon
                 /user/login/logic = anon
                 /user/query = authc
@@ -52,5 +55,32 @@
                 /user/logout = logout
             </value>
         </property>
+    </bean>
+
+    <!--配置记住我的cookie-->
+    <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <property name="name" value="rememberMe"/>
+        <property name="httpOnly" value="true"/>
+        <property name="maxAge" value="604800"/>
+    </bean>
+    <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+         <property name="cookie" ref="rememberMeCookie"/>
+    </bean>
+
+    <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <property name="name" value="JSESSIONID"/>
+        <property name="httpOnly" value="true"/>
+        <property name="maxAge" value="-1"/>
+    </bean>
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <property name="sessionIdCookie" ref="sessionIdCookie"/>
+        <property name="globalSessionTimeout" value="10000"/>
+        <property name="sessionListeners" >
+            <list>
+                <bean class="com.qianfeng.session.MySessionListener"/>
+            </list>
+        </property>
+        <property name="sessionValidationSchedulerEnabled" value="true"/>
+        <property name="sessionValidationInterval" value="10000"/>
     </bean>
 </beans>

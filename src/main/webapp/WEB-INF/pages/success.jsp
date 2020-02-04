@@ -15,9 +15,9 @@
 <h1>登录成功</h1>
 <%--已经登录了的--%>
 欢迎您:
-<shiro:authenticated>
+<shiro:user>
    <shiro:principal/>
-</shiro:authenticated>
+</shiro:user>
 <shiro:notAuthenticated>
     <a href="/user/login">请登录</a>
 </shiro:notAuthenticated>
