@@ -33,6 +33,7 @@ public class MyExceptionResolve implements HandlerExceptionResolver {
             mv.setViewName("redirect:/user/login");
      }else if (ex instanceof UnauthorizedException || ex instanceof  UnauthenticatedException){
             //权限不足跳转的页面
+
             mv.setViewName("redirect:/user/perms/error");
         }
 
